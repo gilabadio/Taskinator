@@ -240,6 +240,19 @@ var dragLeaveHandler = function(event){
 var saveTasks = function(){
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+var loadTasks = function(){
+    var tasks = localStorage.getItem("tasks");
+    if(localStorage.getItem("tasks") === null){
+        return false;}
+    
+    tasks = JSON.parse(tasks);
+    for (var i = 0; i < tasks.length; i ++) {
+        createTaskEl(tasks[i]);
+    }
+} 
+loadTasks();
+
+
 pageContentEl.addEventListener("click", taskButtonHandler);
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
 pageContentEl.addEventListener("dragstart", dragTaskHandler);
